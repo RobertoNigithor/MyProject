@@ -1,0 +1,32 @@
+<!--
+ - Created by RChinnici on 03/05/2023.
+ -->
+
+<aura:component >
+    <aura:attribute name="showAccountForm" type="Boolean" default="true"/>
+    <aura:attribute name="account" type="Object" default="{'sobjectType': 'Account', 'Name': ''}"/>
+    <aura:attribute name="lead" type="Object" default="{'sobjectType': 'Lead', 'FirstName': '', 'LastName': ''}"/>
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    <aura:registerEvent name="accountCreated" type="c:AccountCreated"/>
+    <aura:registerEvent name="leadCreated" type="c:LeadCreated"/>
+
+    <aura:if isTrue="{!v.showAccountForm}">
+        <lightning:card title="New Account">
+            <lightning:input label="Account Name" value="{!v.account.Name}" required="true"/>
+            <!-- Add additional fields for Account -->
+            <lightning:button label="Switch to Lead Form" onclick="{!c.showLeadForm}" />
+            <lightning:button label="Create Account" onclick="{!c.createAccount}" />
+        </lightning:card>
+    </aura:if>
+
+    <aura:if isTrue="{!not(v.showAccountForm)}">
+        <lightning:card title="New Lead">
+            <lightning:input label="First Name" value="{!v.lead.FirstName}" required="true"/>
+            <lightning:input label="Last Name" value="{!v.lead.LastName}" required="true"/>
+            <!-- Add additional fields for Lead -->
+            <lightning:button label="Switch to Account Form" onclick="{!c.showAccountForm}" />
+            <lightning:button label="Create Lead" onclick="{!c.createLead}" />
+        </lightning:card>
+    </aura:if>
+
+</aura:component>

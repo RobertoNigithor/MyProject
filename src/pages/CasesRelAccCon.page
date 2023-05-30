@@ -1,0 +1,62 @@
+<apex:page standardController="Contact" extensions="CasesRelAccCon2" lightningStylesheets="true">  
+      <apex:pageBlock >
+          <apex:pageBlockTable value="{!cases}" var="casi">   
+              <apex:column >
+                  <apex:facet name="header">AccountId</apex:facet>
+                    <apex:outputText value="{!casi.AccountId}"/>
+                </apex:column>
+              <apex:column >
+                  <apex:facet name="header">CaseNumber</apex:facet>
+                    <apex:outputText value="{!casi.CaseNumber}"/>
+                </apex:column>
+              <apex:column >
+                  <apex:facet name="header">Subject</apex:facet>
+                    <apex:outputText value="{!casi.Subject}"/>
+                </apex:column>
+                <apex:column >
+                  <apex:facet name="header">Status</apex:facet>
+                    <apex:outputText value="{!casi.Status}"/>
+                </apex:column>
+                <apex:column >
+                  <apex:facet name="header">Priority</apex:facet>
+                    <apex:outputText value="{!casi.Priority}"/>
+                </apex:column>
+                 <apex:column >
+                  <apex:facet name="header">ContactName</apex:facet>
+                    <apex:outputText value="{!casi.Contact.Name}"/>
+                </apex:column>
+              
+              
+                <apex:column >
+                 <apex:facet name="header">Comments</apex:facet>
+                 <apex:form >
+        <script type="text/javascript">
+          function ToggleInput(theId)
+            {
+                var e = document.getElementById(theId);
+
+                 if(e != null)
+                {
+                    e.disabled  = (e.disabled  ? false : true);
+                }
+                else
+                {
+                    e.disabled = (e.disabled ? true : false)
+                    
+                }
+                
+            }
+
+                     // window.onload = function () { document.getElementById('{!$Component.textInput}').disabled = "disabled"; }
+
+           
+
+        </script>
+        <apex:inputCheckbox onchange="ToggleInput('{!$Component.textInput}');" value="{!casi.CommentsCheck__c}"/>
+        <apex:inputTextArea id="textInput" value="{!casi.Comments__c}" disabled="true"/>
+        <apex:commandButton action="{!Save}" value="Save"/>
+    </apex:form>
+             </apex:column>
+          </apex:pageBlockTable>
+      </apex:pageBlock>
+</apex:page>

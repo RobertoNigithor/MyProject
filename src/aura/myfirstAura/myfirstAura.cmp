@@ -1,0 +1,44 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickActionWithoutHeader"
+    access="global" 
+    controller="myfirstAuraController" ><!--ricordiamoci di mettere il nostro controller,poi con global l'accesso puo essere fatto da ovunque-->
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/> <!--richiamo funzione init--> 
+    
+  <aura:attribute name="con" type="Contact[]" access="global"/><!--dichiarazione attributo di tipo lista di contatti,è solo una dichiarazione non fa comparire nulla --> 
+   <!--con è il nome dell'attributo a cui faremo riferimento anche nella nostra iterazione-->
+   <!--infatti sotto nell'items si mette la "v.con" ,per dire che è una variabile,ed è quello con cui faremo l'iterazione-->
+    
+   <aura:iteration items="{!v.con}" var="cocco" ><!--funziona praticamente come il for-each,cocco è la var per l'iteraggio-->
+        <article class="slds-card">  <!--Qui aggiungiamo un po' di stile con slds ,standard di sl-->
+            <div class="slds-card__header slds-grid">
+              <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-media__figure">
+                    <lightning:icon iconName="standard:contact" title="Contacts" />
+                </div>
+                <div class="slds-media__body">
+                  <h2 class="slds-card__header-title">
+                    <a href="javascript:void(0);" class="slds-card__header-link slds-truncate" title="Contacts">
+                      <span>Contact</span>
+                    </a>
+                  </h2>
+                </div>
+              </header>
+            </div>
+            <div class="slds-card__body slds-card__body_inner"> 
+                <!--E qui mettiamo le input ,in particolare quelle che sono state inserite negli ultimi 4 days-->
+                <lightning:input type="text" label="First Name" value="{!cocco.FirstName}"/><!--Queste sono le nostre input box-->
+                <lightning:input type="text" label="Last Name" value="{!cocco.LastName}"/><!--Quindi-->
+                <lightning:input type="text" label="Phone" value="{!cocco.Phone}"/>
+                <lightning:input type="text" label="Email" value="{!cocco.Email}"/>
+            
+            </div>
+            </article>
+          </aura:iteration>
+
+          
+ <!-- Con questo tasto andiamo alla funzione di update che si trova nel controller-->
+            <div class="updatecls">
+                <lightning:button label="update" onclick="{!c.update}"/><!--onclick si aprirà il controller,per questo c'è la c. -->
+            </div>
+
+</aura:component>

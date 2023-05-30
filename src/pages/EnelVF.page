@@ -1,0 +1,38 @@
+<apex:page standardController="Contract" renderAs="pdf" >
+           
+    
+    <apex:pageBlock title="Contract Summary">
+        <apex:stylesheet value="{!$Resource.EnelVF}"/>
+          
+          <div id="logo">
+          <apex:image id="logo" value="{!$Resource.logo}" width="220" height="100" alt="Description of image here"/>
+          </div>
+          
+          <div id="lamp">
+              <apex:image id="lamp" value="{!$Resource.lampadina}" width="100" height="100" alt="Description of image here"/>
+          </div>
+     
+        <apex:pageBlockSection >
+        
+          
+         <br/>
+          <p><b> Dettagli Contratto : </b></p>
+            Name: {!Contract.Account.Name} <br/>
+            Contract Number: {!Contract.ContractNumber} <br/>
+            Start Date: {!Contract.StartDate} <br/>
+            End Date: {!Contract.EndDate} <br/>
+            Number of Customer: {!Contract.numero_cliente__c}<br/>
+            Type Of Customer: {!Contract.Tipologia_Cliente__c}<br/>
+            Type Of Contract: {!Contract.Denominazione_Contratto__c}<br/>
+            Total Price: {!Contract.TotalPrice__c}<br/>
+        </apex:pageBlockSection>
+         
+         <apex:pageBlockSection > 
+         <br/>
+          <p><b> Dettagli Pagamento: </b></p>
+            Price: {!Contract.Price__c  } <br/>
+            Total Price: {!Contract.TotalPrice__c} <br/>
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+     
+</apex:page>

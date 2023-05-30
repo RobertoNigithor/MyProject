@@ -1,0 +1,13 @@
+<!--
+ - Created by rober on 05/01/2021.
+ -->
+<apex:page standardController="Account" extensions="yourController">
+    <apex:form >
+        <apex:pageblock >
+            <apex:pageBlockButtons >
+                <apex:commandButton action="{!customSave}" value="Save"/>
+                <button class="btn" style="padding:4px;" onclick="window.open('/{!$currentpage.parameters.id}', target='_self');return false;">Cancel</button>
+            </apex:pageBlockButtons>
+        </apex:pageblock>
+    </apex:form>
+</apex:page>

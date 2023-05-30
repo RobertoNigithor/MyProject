@@ -1,0 +1,5 @@
+<aura:component access="global" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickActionWithoutHeader">
+       <c:Search/>
+        <c:Create/>
+        <c:ViewContact/>
+</aura:component>

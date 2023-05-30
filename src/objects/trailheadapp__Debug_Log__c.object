@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>trailheadapp__Class__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The Apex class that added the debug log.</description>
+        <externalId>false</externalId>
+        <label>Class</label>
+        <length>255</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>trailheadapp__Datetime__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>The date/time of the log message.</inlineHelpText>
+        <label>Datetime</label>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>trailheadapp__Message__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The details or message for debug log.</description>
+        <externalId>false</externalId>
+        <label>Message</label>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>trailheadapp__Method__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The Apex class method that added the debug log.</description>
+        <externalId>false</externalId>
+        <label>Method</label>
+        <length>255</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>trailheadapp__Severity__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Severity</label>
+        <length>10</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>trailheadapp__Transaction__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The unique transaction number for reporting.</description>
+        <externalId>false</externalId>
+        <label>Transaction</label>
+        <length>25</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+</CustomObject>

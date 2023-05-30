@@ -1,0 +1,103 @@
+<!--
+ - Created by rober on 04/01/2021.
+ -->
+
+<apex:page docType="html-5.0" standardController="Account" extensions="AssegnaValorePicklist" lightningStylesheets="true"
+           id="AssegnaValorePicklist">   
+    <apex:form >
+        <apex:outputPanel id="block">
+    <apex:pageBlock mode="inlineEdit" id="blockk" >
+        
+            <apex:pageBlockSection >
+                   
+                   Data inizio:<apex:input type="date" value="{!startDate}"/>
+                   Data fine:<apex:input type="date" value="{!endDate}" />
+ 
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel for="searchTextByName">Cerca testo per Nome Creatore</apex:outputLabel>
+                    <apex:panelGroup >
+                        <apex:inputText id="searchTextByName" value="{!searchTextByName}"/>
+ 
+                    </apex:panelGroup>
+                </apex:pageBlockSectionItem>
+                 
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel for="searchTextByReason">Cerca testo per Reason</apex:outputLabel>
+                    <apex:panelGroup >
+                        <apex:inputText id="searchTextByReason" value="{!searchTextByReason}"/>
+                       
+                    </apex:panelGroup>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel for="searchTextBySetDiValori">Cerca testo per Set Di Valori</apex:outputLabel>
+                    <apex:panelGroup >
+                        <apex:inputText id="searchTextBySetDiValori" value="{!searchTextBySetDiValori}"/>
+                        
+                    </apex:panelGroup>
+                </apex:pageBlockSectionItem>
+                <apex:commandButton value="Cerca!" action="{!doSearch}"
+                                            rerender="block" status="status" />
+                
+            </apex:pageBlockSection>
+            
+            <apex:actionStatus id="status" startText="requesting..."/>
+
+            <apex:pageBlockSection title="Results" id="results" columns="1">
+                <apex:pageBlockTable value="{!results}" var="casi"
+                                     rendered="{!NOT(ISNULL(results)) }">>
+                    
+                    <apex:column >
+                        <apex:facet name="header">Account Name</apex:facet>
+                        <apex:outputText value="{!casi.Account.Name}"/>
+                    </apex:column>
+                    <apex:column >
+                        <apex:facet name="header">Status</apex:facet>
+                        <apex:outputText value="{!casi.Status}"/>
+                    </apex:column>
+                    <apex:column Rendered="{!IF(casi.Status!="Closed",true,false)}">
+                            <apex:facet name="header">Set Di Valori</apex:facet>
+                            <apex:outputField value="{!casi.SetDiValori__c}" >
+                                <apex:inlineEditSupport showOnEdit="saveButton, cancelButton"
+                                                        hideOnEdit="editButton" event="ondblclick"
+                                                        changedStyleClass="myBoldClass" resetFunction="resetInlineEdit"
+                                                        disabled="false"/>
+                            </apex:outputField>
+                        </apex:column>
+                    <apex:column Rendered="{!NOT(casi.Status!="Closed")}">
+                        <apex:facet name="header">Set Di Valori</apex:facet>
+                        <apex:outputField value="{!casi.SetDiValori__c}" >
+                            <apex:inlineEditSupport showOnEdit="saveButton, cancelButton"
+                                                     event="ondblclick"
+                                                    changedStyleClass="myBoldClass" resetFunction="resetInlineEdit"
+                                                    disabled="true"/>
+                        </apex:outputField>
+                    </apex:column>
+                    <apex:column >
+                        <apex:facet name="header">Created Date</apex:facet>
+                        <apex:outputText value="{0,date, dd-MM-yyyy}"> <apex:param value="{!casi.CreatedDate}" /> </apex:outputText>
+                    </apex:column>
+                    <apex:column >
+                        <apex:facet name="header">Created By</apex:facet>
+                        <apex:outputText value="{!casi.CreatedBy.Name}"/>
+                    </apex:column>
+                    <apex:column >
+                        <apex:facet name="header">Reason</apex:facet>
+                        <apex:outputText value="{!casi.Reason}"/>
+                    </apex:column>
+                    <apex:column >
+                        <apex:facet name="header">Case Number</apex:facet>
+                        <apex:outputText value="{!casi.CaseNumber}"/>
+                    </apex:column>
+                </apex:pageBlockTable>
+            </apex:pageBlockSection>
+            <apex:pageBlockButtons >
+                <apex:commandButton action="{!save}" id="saveButton" value="Save" onclick="showToast();"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+      <apex:outputLabel id="noRecFound" rendered="{! blnNoResultFound }"><font size="7">Nessun Record trovato !!!</font></apex:outputLabel>
+               </apex:outputPanel>
+
+    </apex:form>
+    <apex:messages />
+</apex:page>

@@ -1,0 +1,16 @@
+<!--
+ - Created by rober on 07/01/2021.
+ -->
+
+<apex:page standardController="case" extensions="accountsearch">
+    <apex:form >
+        <apex:inputText value="{!searchstring}" label="Input">
+            <apex:commandButton value="Search records" action="{!search}" />
+        </apex:inputText>
+        <apex:pageBlock title="Search Result">
+            <apex:pageblockTable value="{!cas}" var="a">
+                <apex:column value="{!a.CaseNumber}"/>
+            </apex:pageblockTable>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

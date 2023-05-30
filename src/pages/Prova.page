@@ -1,0 +1,49 @@
+<!--Se aggiungi questo al tag page aggiunge una lista degli account: action="{!URLFOR($Action.Account.List, $ObjectType.Account)}"-->
+<apex:page standardController="Account" >
+    <!-- Visual force comprende i classici tag Html -->
+    <h1>Congratulations</h1> <br/>
+    This is your new Apex Page: <br/>
+    HelloWorld!!!
+    <!--Esistono delle variabili globali precedute dal dollaro,come per User  -->
+    Hello {!$User.FirstName}!<br/>
+    <!--Per utilizzare variabili non globali bisogna far riferimento ad un controller, tipo qui account-->
+    <!--In questo caso l'istruzione fa riferimento ad un metodo nel controller getAccount-->
+    <!--Se vuoi provarlo con un account, inseriscilo nell'URL https://MyDomainName.my.salesforce.com/apex/Prova così
+		https://MyDomainName.my.salesforce.com/apex/Prova?id=0015I000004VSWF , considerando che HelloWorld2 sarebbe il nome 
+		della pagina -->
+	<p>You are viewing the {!account.name} account.</p>
+    <!--Con questo tag si può dare una formattazione-->
+     <apex:pageBlock title="Hello {!$User.FirstName}!"> 
+            You are viewing the {!account.name} account.
+    </apex:pageBlock>
+    <!--Con solo questo piccolo tag stampiamo l'intero Detail dell'account -->
+   <apex:detail />
+   <!--In questo modo invece si riducono i risultati--> <br/> <br/> <br/>
+   <apex:detail subject="{!account.ownerId}" relatedList="false" title="false"/> 
+    <!--Per far si che si possano inviare dati si usano inputField e come tasto commandButton--> <br/> <br/> <br/>
+	 <apex:form > 
+        <apex:pageBlock title="Hello {!$User.FirstName}!">
+            You are viewing the {!account.name} account. <p/>
+            Change Account Name: <p/> 
+            <apex:inputField value="{!account.name}"/> <p/>
+            <apex:commandButton action="{!save}" value="Save New Account Name"/> 
+        </apex:pageBlock>
+    </apex:form>
+    <!--Di seguito degli esempi -->
+    <apex:form >
+        <apex:commandButton ></apex:commandButton> 
+        <apex:commandLink ></apex:commandLink>
+        <apex:inputCheckbox ></apex:inputCheckbox>
+        <!--<apex:inputFile></apex:inputFile> -->
+        <apex:inputSecret ></apex:inputSecret>
+        <apex:inputText ></apex:inputText>
+        <apex:inputTextarea ></apex:inputTextarea>
+        <apex:outputLabel ></apex:outputLabel>
+       	<apex:outputLink ></apex:outputLink>
+   		<apex:selectCheckboxes ></apex:selectCheckboxes>
+   		<apex:selectList ></apex:selectList>
+    	<apex:selectRadio ></apex:selectRadio>
+        </apex:form>
+	</apex:page>
+
+<!---->
